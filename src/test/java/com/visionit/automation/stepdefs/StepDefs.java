@@ -87,14 +87,6 @@ public class StepDefs {
 
         String expected = "Online Shopping site in India: Shop Online for Mobiles, Books, Watches, Shoes and More - Amazon.in";
         cmnPageObjects.validatePageTitleMatch(expected);
-
-        String sdfsf = "{\n" +
-                "  \"content\": [\n" +
-                "    {\n" +
-                "      \"fullName\": \"string\",\n" +
-                "      \"userName\": \"string\"\n" +
-                "    }\n" +
-                "  ],";
     }
 
     // make sure to use this after import io.cucumber.java.After;
@@ -103,7 +95,7 @@ public class StepDefs {
     // Giving this method order as 2, so that quit happens after screen shot capture.
     @After(order=1)
     public void cleanUp(){
-        //WebDriverFactory.quitDriver();
+    	driver.close();
         scn.log("Browser Closed");
     }
 
@@ -126,11 +118,12 @@ public class StepDefs {
     //13. Now since we need to capture the screen shot only after a test is failed, we will put a if condition as check the failure using method 'isFailed'.
     //14. If test is failed it will take the screen shot and attach the screen shot with the report. For this s.attach method is used. (in old version, method name was embed)
     @After(order=2)
-    public void takeScreenShot(Scenario s) {
+    public void takeScreenShot(Scenario s) throws InterruptedException {
         if (s.isFailed()) {
             TakesScreenshot scrnShot = (TakesScreenshot)driver;
             byte[] data = scrnShot.getScreenshotAs(OutputType.BYTES);
             scn.attach(data, "image/png","Failed Step Name: " + s.getName());
+            Thread.sleep(120000);
         }else{
             scn.log("Test case is passed, no screen shot captured");
         }

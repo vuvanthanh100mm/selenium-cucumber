@@ -1,10 +1,5 @@
 package com.visionit.automation.runners;
-/***
- * Author: Akash Tyagi
- * Company: VisionIT
- * Date: 17-Sep-2020
- * Description: Test Automation FW development
- */
+/*
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -27,3 +22,4 @@ public class TestRunnerDebugMode {
     //Nothing goes here
     //So do not get confused
 }
+ */
